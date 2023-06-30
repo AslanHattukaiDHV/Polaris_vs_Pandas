@@ -1,0 +1,6 @@
+Runtimes,CPUsage,functions
+0.107795,11.447,min
+0.090118,9.48,max
+0.100232,12.733,mean
+0.350814,9.853,median
+0.323708,9.94,std
