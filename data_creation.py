@@ -1,7 +1,8 @@
 
 import pandas as pd
 import random
-import string 
+import string
+import os
 
 def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
     # Generate CRM data
@@ -38,3 +39,24 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
 def write_to_parquet(data, filename):
     df = pd.DataFrame(data)
     df.to_parquet("data/"+filename)
+
+def find_files_with_prefix(directory, prefix):
+    matching_files = []
+    for file_name in os.listdir(directory):
+        if file_name.startswith(prefix):
+            matching_files.append(file_name)
+    return matching_files
+
+def get_all_datasets():
+    directory = "data"
+    prefix = "dataset_"
+    matching_files = find_files_with_prefix(directory, prefix)
+    matching_files_full_path = []
+    for file_name in matching_files:
+        matching_files_full_path.append("data/"+file_name)
+    return(matching_files_full_path)
+    
+
+
+
+
