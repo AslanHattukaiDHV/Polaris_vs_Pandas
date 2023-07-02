@@ -37,4 +37,4 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
 
 def write_to_parquet(data, filename):
     df = pd.DataFrame(data)
-    df.to_parquet(filename)
+    df.to_parquet("data/"+filename)
