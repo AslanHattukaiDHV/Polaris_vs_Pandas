@@ -1,4 +1,5 @@
 
+import pandas as pd
 
 def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
     # Generate CRM data
@@ -23,3 +24,7 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
         data[column_name] = [random.uniform(0, 1) for _ in range(num_rows)]
         
     return data 
+
+def write_to_parquet(data, filename):
+    df = pd.DataFrame(data)
+    df.to_parquet(filename)
