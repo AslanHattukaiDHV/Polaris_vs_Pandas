@@ -1,8 +1,18 @@
 
 import pandas as pd
+import random
+import string 
 
 def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
     # Generate CRM data
+    european_countries = [
+    'Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus', 'Belgium', 'Bosnia and Herzegovina',
+    'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Georgia',
+    'Germany', 'Greece', 'Hungary', 'Iceland', 'Ireland', 'Italy', 'Kazakhstan', 'Kosovo', 'Latvia', 'Liechtenstein',
+    'Lithuania', 'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'North Macedonia',
+    'Norway', 'Poland', 'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia', 'Spain',
+    'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City']
+
     data = {
         'CustomerID': range(1, num_rows + 1),
         'Name': [''.join(random.choices(string.ascii_letters, k=5)) for _ in range(num_rows)],
