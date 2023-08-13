@@ -12,3 +12,13 @@ def measure_runtime(func):
         return result
 
     return wrapper
+
+
+
+def measure_cpu(func):
+    cpu_usage_start = psutil.cpu_percent()
+
+
+def measure_memory_usage(func):
+    memory_usage_start = psutil.Process().memory_percent()
+        
