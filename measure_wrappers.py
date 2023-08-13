@@ -17,19 +17,26 @@ def measure_runtime(func):
 
 
 def measure_cpu(func):
-    cpu_usage_start = psutil.cpu_percent()
-    result = func(*args, **kwargs)
-    cpu_usage_end = psutil.cpu_percent()
-    cpu_usage = cpu_usage_end - cpu_usage_start
-    print(f"The function {func.__name__} took {cpu_usage} cpu percentage to run.")
-    return result
+    def wrapper(*args, **kwargs):
+        cpu_usage_start = psutil.cpu_percent()
+        result = func(*args, **kwargs)  # Call the decorated function
+        cpu_usage_end = psutil.cpu_percent()
+        cpu_usage = cpu_usage_end - cpu_usage_start
+        print(f"The function {func.__name__} took {cpu_usage} cpu percentage to run.")
+        return result
+    
+    return wrapper
         
 
 
 def measure_memory_usage(func):
-    memory_usage_start = psutil.Process().memory_percent()
-    memory_usage_end = psutil.Process().memory_percent()
-    memory_usage = memory_usage_end - memory_usage_start
-    print(f"The function {func.__name__} took {memory_usage} memory % to run.")
-    return result
+    def wrapper(*args, **kwargs):
+        memory_usage_start = psutil.Process().memory_percent()
+        result = func(*args, **kwargs)
+        memory_usage_end = psutil.Process().memory_percent()
+        memory_usage = memory_usage_end - memory_usage_start
+        print(f"The function {func.__name__} took {memory_usage} memory % to run.")
+        return result
+    
+    return wrapper
         
