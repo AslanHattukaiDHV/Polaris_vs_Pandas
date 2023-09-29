@@ -1,5 +1,6 @@
 
 import pandas as pd
+import polars as pl
 import random
 import string
 import os
@@ -36,9 +37,13 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
         
     return data 
 
-def write_to_parquet(data, filename):
+def write_to_parquet_pd(data, filename):
     df = pd.DataFrame(data)
     df.to_parquet("data/"+filename)
+
+def write_to_parquet_pl(data, filename):
+    df = pl.DataFrame(data)
+    df.write_parquet("data/"+filename)
 
 def find_files_with_prefix(directory, prefix):
     matching_files = []
