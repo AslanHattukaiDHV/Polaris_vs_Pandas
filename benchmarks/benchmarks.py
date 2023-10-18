@@ -15,7 +15,7 @@ def track_cpu_memory(query, *args):
     start_memory_mb = process.memory_info().rss / (1024 * 1024)
 
     # run query
-    result = query()
+    result = query
 
     # finish
     end_time = time.time()
