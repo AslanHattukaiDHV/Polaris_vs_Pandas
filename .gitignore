@@ -1,3 +1,6 @@
 dataset_*.pq
 *.cpython*
 *.dat
+
+.env
+*env/*
