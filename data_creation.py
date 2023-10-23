@@ -22,6 +22,7 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
         'Phone': [''.join(random.choices(string.digits, k=10)) for _ in range(num_rows)],
         'Address': [''.join(random.choices(string.ascii_letters + string.digits, k=10)) for _ in range(num_rows)],
         'Country': [random.choice(european_countries) for _ in range(num_rows)],
+        'Code': [''.join(random.choices(string.digits, k=2)) for _ in range(num_rows)],
         'Gender': [random.choice(['Male', 'Female']) for _ in range(num_rows)],
     }
 
