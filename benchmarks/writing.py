@@ -4,8 +4,6 @@ import click
 import random
 import string
 from memory_profiler import profile
-import psutil
-import time
 
 
 def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
@@ -67,40 +65,12 @@ def test_write(pvp, num_rows, num_int_cols, num_float_cols):
     elif pvp=='pl':
         write_to_parquet_pl(data, 'tmp_pl.parquet')
     elif pvp=='both':
-        write_to_parquet_pd(data, 'panda.parquet')
-        write_to_parquet_pl(data, 'polar.parquet')
-        
-        panda = pd.DataFrame(data)
-        
-        countries_pd_1 = panda.drop_duplicates(subset=['Country'], keep='first')
-        countries_pd_2 = panda.drop_duplicates(subset=['Country', 'Code'], keep='first') # just read next time from folder instead of manipulating
-        countries_pl_1 = pl.DataFrame(countries_pd_1)
-        countries_pl_2 = pl.DataFrame(countries_pd_2)
-        
-        countries_pd_1.to_parquet("benchmarks/datasets/countries_pd_1.parquet")
-        countries_pd_2.to_parquet("benchmarks/datasets/countries_pd_2.parquet")
-        countries_pl_1.write_parquet("benchmarks/datasets/countries_pl_1.parquet")
-        countries_pl_2.write_parquet("benchmarks/datasets/countries_pl_2.parquet")
+        #write_to_parquet_pd(data, f"panda_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
+        write_to_parquet_pl(data, f"dataset_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
     else:
         click.echo("Invalid pvp option. Use --pvp pd, --pvp pl or --pvp both.")
         return
-    
-if __name__=='__main__':
-    cpu_usage_perc = []
-    memory_usage_mb = []
-    process = psutil.Process()
-    start_time = time.time()
-    start_cpu_percent = process.cpu_percent(interval=None)
-    start_cpu_percent = process.cpu_percent(interval=None)
-    start_memory_mb = process.memory_info().rss / (1024 * 1024)
-    
-    test_write()
-    
-    end_time = time.time()
-    total_time = end_time - start_time
-    end_cpu_percent = process.cpu_percent(interval=None)
-    end_memory_mb = process.memory_info().rss / (1024 * 1024)
 
-    # calculate cpu & memory
-    cpu_usage_perc.append(end_cpu_percent - start_cpu_percent)
-    memory_usage_mb.append(end_memory_mb - start_memory_mb)
+    
+if __name__=='__main__':    
+    test_write()

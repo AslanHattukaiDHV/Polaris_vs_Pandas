@@ -56,11 +56,11 @@ def find_files_with_prefix(directory, prefix):
     return matching_files
 
 def get_all_datasets():
-    directory = "data"
+    directory = "datasets/"
     prefix = "dataset_"
     matching_files = find_files_with_prefix(directory, prefix)
     matching_files_full_path = []
     for file_name in matching_files:
-        matching_files_full_path.append("data/"+file_name)
+        matching_files_full_path.append(file_name)
     return(matching_files_full_path)
     

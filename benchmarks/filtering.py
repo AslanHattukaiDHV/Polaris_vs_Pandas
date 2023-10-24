@@ -25,21 +25,24 @@ def filter_polars(polar):
     
 @click.command()
 @click.option("--pvp", type=click.Choice(["pd", "pl", "both"]), default='pd', required=True, help="Select the library to benchnmark (valid choices: pd (pandas) or pl (polars)).")
-def test_filter(pvp):
+@click.option("--dataset", required=True, help="Select the dataset.")
+def test_filter(pvp, dataset):
     if pvp=='pd':
-        df=reading.read_pandas(filepath='benchmarks/datasets/panda.parquet')
+        df=pd.read_parquet('benchmarks/datasets/'+dataset)
+        #df=reading.read_pandas('benchmarks/datasets/'+dataset)
         res=filter_pandas(df)
         
     elif pvp=='pl':
-        df=reading.read_polars(filepath='benchmarks/datasets/polar.parquet')
+        df=pl.read_parquet('benchmarks/datasets/'+dataset)
+        #df=reading.read_polars('benchmarks/datasets/'+dataset)
         res=filter_polars(df)
     else:
         click.echo("Invalid pvp option. Use --pvp pd or --pvp pl.")
         return
     
-    click.echo(df)
-    click.echo(f"Size of the {pvp}.DataFrame object (sys): {sys.getsizeof(df)} bytes")
-    click.echo(f"Size of the {pvp}.DataFrame object (pympler): {asizeof.asizeof(df)} bytes")
+    # click.echo(df)
+    # click.echo(f"Size of the {pvp}.DataFrame object (sys): {sys.getsizeof(df)} bytes")
+    # click.echo(f"Size of the {pvp}.DataFrame object (pympler): {asizeof.asizeof(df)} bytes")
     
     
 if __name__=='__main__':
