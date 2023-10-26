@@ -2,9 +2,6 @@ import pandas as pd
 import polars as pl
 import click
 from memory_profiler import profile
-import reading
-from pympler import asizeof
-import sys
 
 
 ## FILTER queries for pvp

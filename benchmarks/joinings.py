@@ -2,7 +2,6 @@ import pandas as pd
 import polars as pl
 import click
 from memory_profiler import profile
-import reading
 import time
 
 
@@ -29,31 +28,35 @@ def join_polars(polar, countries_pl, type_join, join_on):
     
 @click.command()
 @click.option("--pvp", type=click.Choice(["pd", "pl"]), default='pd', required=True, help="Select the library to benchnmark (valid choices: pd (pandas) or pl (polars)).")
+@click.option("--dataset", required=True, help="Select the dataset.")
 @click.option("--type_join", type=click.Choice(["left", "inner", "outer"]), default="inner", required=True, help="Specify the type of join.")
 @click.option("--join_on", type=click.Choice(["country", "country_code"]), default="country", required=True, help="Specify the columns to join on.")
-def test_join(pvp, type_join, join_on):
+def test_join(pvp, dataset, type_join, join_on):
     if pvp=='pd':
-        df=reading.read_pandas(filepath='benchmarks/datasets/panda.parquet')
+        df=pd.read_parquet('benchmarks/datasets/'+dataset)
+        # df=reading.read_pandas(filepath='benchmarks/datasets/panda.parquet')
         if join_on == "country":
-            df2=reading.read_pandas(filepath='benchmarks/datasets/countries_pd_1.parquet')
+            df2=pd.read_parquet('benchmarks/datasets/countries.parquet')
         elif join_on == "country_code":
-            df2=reading.read_pandas(filepath='benchmarks/datasets/countries_pd_2.parquet')
+            df2=pd.read_parquet('benchmarks/datasets/countries_code.parquet')
         res=join_pandas(df, df2, type_join, join_on)
         
     elif pvp=='pl':
-        df=reading.read_polars(filepath='benchmarks/datasets/polar.parquet')
+        df=pl.read_parquet('benchmarks/datasets/'+dataset)
+        # df=reading.read_polars(filepath='benchmarks/datasets/polar.parquet')
         if join_on == "country":
-            df2=reading.read_polars(filepath='benchmarks/datasets/countries_pl_1.parquet')
+            df2=pl.read_parquet('benchmarks/datasets/countries.parquet')
         elif join_on == "country_code":
-            df2=reading.read_polars(filepath='benchmarks/datasets/countries_pl_2.parquet')
+            df2=pl.read_parquet('benchmarks/datasets/countries_code.parquet')
         res=join_polars(df, df2, type_join, join_on)
+        
     else:
         click.echo("Invalid pvp option. Use --pvp pd or --pvp pl.")
         return
     
-    click.echo(df)
-    click.echo(df2)
-    click.echo(res)
+    # click.echo(df)
+    # click.echo(df2)
+    # click.echo(res)
 
     
     

@@ -2,8 +2,6 @@ import pandas as pd
 import polars as pl
 import click
 from memory_profiler import profile
-import reading
-
 
 ## FILTER queries for pvp
 @profile
@@ -33,21 +31,20 @@ def agg_polars(polar):
     
 @click.command()
 @click.option("--pvp", type=click.Choice(["pd", "pl"]), default='pd', required=True, help="Select the library to benchnmark (valid choices: pd (pandas) or pl (polars)).")
-def test_agg(pvp):
+@click.option("--dataset", required=True, help="Select the dataset.")
+def test_agg(pvp, dataset):
     if pvp=='pd':
-        df=reading.read_pandas(filepath='benchmarks/datasets/panda.parquet')
+        df=pd.read_parquet('benchmarks/datasets/'+dataset)
+        #df=reading.read_pandas(filepath='benchmarks/datasets/panda.parquet')
         res=agg_pandas(df)
         
     elif pvp=='pl':
-        df=reading.read_polars(filepath='benchmarks/datasets/polar.parquet')
+        df=pl.read_parquet('benchmarks/datasets/'+dataset)
+        #df=reading.read_polars(filepath='benchmarks/datasets/polar.parquet')
         res=agg_polars(df)
     else:
         click.echo("Invalid pvp option. Use --pvp pd or --pvp pl.")
         return
-    
-    click.echo(df)
-    click.echo(res)
-    
     
 if __name__=='__main__':
     test_agg()

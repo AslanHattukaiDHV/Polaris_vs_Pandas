@@ -63,4 +63,4 @@ if __name__=='__main__':
     res=pd.concat(frames)
     
     # save to csv
-    res.to_csv(f'benchmarks/csv_benchmarks/fct_benchmarks.csv') # index=False
+    res.to_csv(f'benchmarks/csv_benchmarks/all_and_agg.csv') # index=False

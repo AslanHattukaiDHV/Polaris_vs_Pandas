@@ -1,0 +1,107 @@
+**Title**: Pandas vs. Polars: Memory Usage
+
+There is a significance of efficient data processing, especially when it comes to managing memory usage. 
+Effective memory management can significantly impact the performance and scalability of data processing tasks ...
+Pandas (https://pandas.pydata.org/about/index.html) has long been used by data professionals ... Pandas (Python for Data Analysis) is a Python library designed for data analysis. The primary features of the library revolve around its exposure of a Dataframe-centric way of working. Moreover, critical code paths are written in C or Cython to enhance performance. Pandas provides the capability to read and write data from a wide range of sources and formats, spanning from CSV to Excel. Once data is stored in a dataframe, Pandas offers extensive functionality for common data manipulations, such as reshaping, joining, slicing, and more.
+Python with pandas is in use in a wide variety of academic and commercial domains, including Finance, Neuroscience, Economics, Statistics, Advertising, Web Analytics, and more.
+
+
+However, ... polars is a recently developed open source ... Polars (https://www.pola.rs/) boasts about their speeds compared to Pandas, claiming to be much faster. 
+On top of that, Polars is built upon the safe Arrow2 implementation of the Apache Arrow specification (https://arrow.apache.org/), enabling efficient resource use and processing performance. 
+By doing so, it also integrates seamlessly with other tools in the Arrow ecosystem.
+All in all, its embarrassingly parallel execution, cache efficient algorithms and expressive API makes it perfect for efficient data wrangling, data pipelines, snappy APIs and so much more.
+
+Both libraries offer similar functionality through slightly different APIs, but their implementation differs due to the choice of programming language.
+The fact that Polars is written in Rust inherently gives it an advantage over Pandas, which is primarily written in Python with core components in C or Cython. 
+Rust is known for its speed and superior memory management compared to C.
+
+In this blog post, we run some benchmarks on our local machine and reflect on the performance of pandas and polars in terms of memory usage. 
+Rather than focusing on execution time, the focus of our blog post predominantly lies in comparing memory usage as a function of time.
+Our aim is to provide you with a comprehensive understanding of how these libraries manage memory during these fundamental data processing tasks.
+What does it mean for practitioners?
+...
+
+Writing Parquet Files:
+We'll explore how Pandas and Polars handle the task of writing data to Parquet files, a common format for data storage.
+Parquet files are widely used for their columnar storage, which can significantly impact memory consumption.
+
+Reading Parquet Files:
+We'll investigate how both libraries perform when reading Parquet files.
+Efficiency in data ingestion is crucial, and we'll measure and compare memory usage for this task.
+
+Filtering Dataset/DataFrame:
+Filtering data is a common operation in data processing.
+We'll evaluate how Pandas and Polars handle filtering tasks and assess their memory efficiency during this process.
+
+Joining (Left, Inner, Outer):
+Joining datasets is often a memory-intensive operation.
+We will explore how memory usage varies when performing left, inner, and outer joins with both libraries.
+
+Grouping with Aggregating:
+Aggregating data is essential for generating insights from large datasets.
+We'll compare how Pandas and Polars handle grouping and aggregation operations, taking memory efficiency into account.
+
+
+links:
+https://h2oai.github.io/db-benchmark/ 
+
+Local machine / system specs
+Component	Value
+CPU model	13th Gen Intel(R) Core(TM) i5-1335U, 1300 Mhz, 10 Core(s), 12 Logical Processor(s)
+Installed Physical Memory (RAM)     8,00 GB
+Total Physical Memory	    7,68 GB
+Total Virtual Memory	    31,5 GB
+Page File Space         23,8 GB
+GPU model	Intel(R) UHD Graphics
+
+
+
+
+**Introduction**
+- Briefly introduce the importance of memory usage in data analysis.
+- Mention that Pandas and Polars are popular libraries for data manipulation in Python and Rust, respectively.
+- State that the post will compare the memory usage of Pandas and Polars for various data processing tasks.
+
+**Table of Contents**
+1. **Understanding the Libraries**
+    - Provide a brief introduction to both Pandas and Polars.
+    - Explain their popularity and use cases.
+
+2. **Importing Data**
+    - Discuss how to import data into Pandas and Polars.
+    - Measure and compare the memory consumption when loading the same dataset using both libraries.
+    - Highlight any significant differences.
+
+3. **Data Transformation and Manipulation**
+    - Compare memory usage when performing common data transformation tasks, such as filtering, selecting columns, and merging data.
+    - Provide code examples for each task in both Pandas and Polars.
+    - Analyze the memory efficiency of each library in these scenarios.
+
+4. **Handling Large Datasets**
+    - Discuss the challenges of working with large datasets.
+    - Present a case study with a large dataset and compare memory usage during operations like aggregation, sorting, and groupby.
+
+5. **Out-of-Core Processing**
+    - Explain the concept of out-of-core processing and why it's crucial for handling datasets that don't fit in memory.
+    - Compare how Pandas and Polars handle out-of-core processing, including reading and writing to disk.
+
+6. **Performance Tips**
+    - Offer practical tips and best practices for optimizing memory usage in both libraries.
+    - Suggest when to use Pandas and when to consider switching to Polars based on memory constraints.
+
+7. **Conclusion**
+    - Summarize the key findings and takeaways from the comparison.
+    - Provide recommendations on when to use Pandas and when Polars might be a better choice, considering memory usage.
+
+8. **Additional Resources**
+    - List recommended resources and documentation for Pandas and Polars.
+    - Include links to relevant articles, tutorials, and official documentation.
+
+9. **Author's Note**
+    - Share your personal experiences or insights regarding the use of Pandas and Polars in real-world projects.
+
+10. **Comments and Discussion**
+    - Encourage readers to share their thoughts, experiences, and questions in the comments section.
+    - Offer to answer any questions or engage in discussions with readers.
+
+
