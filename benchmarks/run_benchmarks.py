@@ -92,12 +92,14 @@ def run_aggregating(pvp, dataset):
     
 if __name__ == '__main__':
     
-    pvp_values = ['pd', 'pl']
-    num_rows_values = ['1000000', '10000000', '100000000']
-    # num_int_cols_values = ['10']
-    # num_float_cols_values = ['10']
+    #pvp_values = ['pd', 'pl']
+    pvp_values = ['both']
+    # num_rows_values = ['1000000', '5000000', '10000000']
+    num_rows_values = ['100000000']
     num_int_cols_values = ['5']
     num_float_cols_values = ['5']
+    #num_int_cols_values = ['10']
+    #num_float_cols_values = ['10']
     
     
     # RUN FOR WRITING PARQUETs

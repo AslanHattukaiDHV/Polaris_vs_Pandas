@@ -21,11 +21,11 @@ from memory_profiler import profile
 
 
 @profile
-def read_pandas(filepath='benchmarks/datasets/panda.parquet'):
+def read_pandas(filepath):
     return pd.read_parquet(filepath)
 
 @profile
-def read_polars(filepath='benchmarks/datasets/polar.parquet'):
+def read_polars(filepath):
     return pl.read_parquet(filepath)
 
 

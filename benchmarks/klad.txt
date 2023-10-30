@@ -1,25 +1,3 @@
-**Title**: Pandas vs. Polars: Memory Usage
-
-There is a significance of efficient data processing, especially when it comes to managing memory usage. 
-Effective memory management can significantly impact the performance and scalability of data processing tasks ...
-Pandas (https://pandas.pydata.org/about/index.html) has long been used by data professionals ... Pandas (Python for Data Analysis) is a Python library designed for data analysis. The primary features of the library revolve around its exposure of a Dataframe-centric way of working. Moreover, critical code paths are written in C or Cython to enhance performance. Pandas provides the capability to read and write data from a wide range of sources and formats, spanning from CSV to Excel. Once data is stored in a dataframe, Pandas offers extensive functionality for common data manipulations, such as reshaping, joining, slicing, and more.
-Python with pandas is in use in a wide variety of academic and commercial domains, including Finance, Neuroscience, Economics, Statistics, Advertising, Web Analytics, and more.
-
-
-However, ... polars is a recently developed open source ... Polars (https://www.pola.rs/) boasts about their speeds compared to Pandas, claiming to be much faster. 
-On top of that, Polars is built upon the safe Arrow2 implementation of the Apache Arrow specification (https://arrow.apache.org/), enabling efficient resource use and processing performance. 
-By doing so, it also integrates seamlessly with other tools in the Arrow ecosystem.
-All in all, its embarrassingly parallel execution, cache efficient algorithms and expressive API makes it perfect for efficient data wrangling, data pipelines, snappy APIs and so much more.
-
-Both libraries offer similar functionality through slightly different APIs, but their implementation differs due to the choice of programming language.
-The fact that Polars is written in Rust inherently gives it an advantage over Pandas, which is primarily written in Python with core components in C or Cython. 
-Rust is known for its speed and superior memory management compared to C.
-
-In this blog post, we run some benchmarks on our local machine and reflect on the performance of pandas and polars in terms of memory usage. 
-Rather than focusing on execution time, the focus of our blog post predominantly lies in comparing memory usage as a function of time.
-Our aim is to provide you with a comprehensive understanding of how these libraries manage memory during these fundamental data processing tasks.
-What does it mean for practitioners?
-...
 
 Writing Parquet Files:
 We'll explore how Pandas and Polars handle the task of writing data to Parquet files, a common format for data storage.

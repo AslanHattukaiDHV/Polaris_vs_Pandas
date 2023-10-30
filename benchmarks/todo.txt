@@ -1,5 +1,4 @@
 # todo
-- use python 3.12! Improved performance, optimized memory related things
 
 - visualize with seaborn sns + extra
 

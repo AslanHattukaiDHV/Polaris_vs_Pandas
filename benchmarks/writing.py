@@ -61,9 +61,11 @@ def test_write(pvp, num_rows, num_int_cols, num_float_cols):
     data = generate_test_data(num_rows, num_int_cols, num_float_cols)
     
     if pvp=='pd':
-        write_to_parquet_pd(data, 'tmp_pd.parquet')
+        # write_to_parquet_pd(data, 'tmp_pd.parquet')
+        write_to_parquet_pd(data, f"dataset_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
     elif pvp=='pl':
-        write_to_parquet_pl(data, 'tmp_pl.parquet')
+        # write_to_parquet_pl(data, 'tmp_pl.parquet')
+        write_to_parquet_pl(data, f"dataset_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
     elif pvp=='both':
         #write_to_parquet_pd(data, f"panda_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
         write_to_parquet_pl(data, f"dataset_{num_rows}rows_{num_int_cols}ints_{num_float_cols}floats.parquet")
