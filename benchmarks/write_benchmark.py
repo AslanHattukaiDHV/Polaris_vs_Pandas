@@ -43,19 +43,14 @@ def generate_test_data(num_rows=100000, num_float_cols=11, num_int_cols=11):
 @profile
 def write_to_parquet_pd(data, filename):
     df = pd.DataFrame(data)
-    df.to_parquet("benchmarks/datasets/"+filename)
+    df.to_parquet("datasets/"+filename)
 
 @profile
 def write_to_parquet_pl(data, filename):
     df = pl.DataFrame(data)
-    df.write_parquet("benchmarks/datasets/"+filename)
+    df.write_parquet("datasets/"+filename)
 
 
-@click.command()
-@click.option("--pvp", type=click.Choice(["pd", "pl", "both"]), default='both', required=True, help="Select the library to benchnmark (valid choices: pd (pandas) or pl (polars)).")
-@click.option("--num_rows", default=1000000, required=True, help="Choose number of rows.")
-@click.option("--num_int_cols", default=5, required=True, help="Choose number of integer columns.")
-@click.option("--num_float_cols", default=5, required=True, help="Choose number of float columns.")
 def test_write(pvp, num_rows, num_int_cols, num_float_cols):
     
     data = generate_test_data(num_rows, num_int_cols, num_float_cols)

@@ -1,4 +1,4 @@
-import writing
+import benchmarks.write_benchmark as write_benchmark
 import pandas as pd
 import polars as pl
 
@@ -7,7 +7,7 @@ import polars as pl
 if __name__=='__main__':
     
     # datasets for joining
-    data = writing.generate_test_data(10000, 5, 5)
+    data = write_benchmark.generate_test_data(10000, 5, 5)
     panda = pd.DataFrame(data)
 
     countries_1 = panda.drop_duplicates(subset=['Country'], keep='first')
