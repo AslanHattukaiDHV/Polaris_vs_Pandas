@@ -56,9 +56,9 @@ def write_to_parquet_pl(data, filename):
 @click.option("--num_rows", default=1000000, required=True, help="Choose number of rows.")
 @click.option("--num_int_cols", default=5, required=True, help="Choose number of integer columns.")
 @click.option("--num_float_cols", default=5, required=True, help="Choose number of float columns.")
-def test_write(pvp, num_rows, num_int_cols, num_float_cols):
+def test_write(data, pvp, num_rows, num_int_cols, num_float_cols):
     
-    data = generate_test_data(num_rows, num_int_cols, num_float_cols)
+    #data = generate_test_data(num_rows, num_int_cols, num_float_cols)
     
     if pvp=='pd':
         # write_to_parquet_pd(data, 'tmp_pd.parquet')
